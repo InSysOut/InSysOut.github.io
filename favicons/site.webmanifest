@@ -24,8 +24,8 @@
       "type": "image/png"
     },
     {
-      "src": "/favicons/mstile-144x144.png",
-      "sizes": "144x144",
+      "src": "/favicons/mstile-150x150.png",
+      "sizes": "150x150",
       "type": "image/png"
     }
   ],
