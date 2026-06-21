@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الآيات الجامعة بين الدعاء وأسماء الله الحسنى</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Amiri+Quran&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #1a1208;
+    --parchment:#f7f2e8;
+    --cream:    #ede6d6;
+    --gold:     #b8860b;
+    --gold-lt:  #d4a82a;
+    --gold-glow:#f0d060;
+    --deep:     #2c1a00;
+    --rust:     #7a3b1e;
+    --border:   #c9a84c;
+    --muted:    #6b5a3e;
+    --tag-bg:   #2c1a00;
+    --tag-text: #f0d060;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--parchment);
+    color: var(--ink);
+    font-family: 'Amiri', serif;
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 10px;
+    border: 2px solid var(--border);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  header {
+    background: var(--deep);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '﷽';
+    position: absolute;
+    font-size: 5rem;
+    color: rgba(212,168,42,0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .bismillah {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: 1.9rem;
+    color: var(--gold-glow);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  header h1 {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: #fff;
+    line-height: 1.5;
+    font-weight: 700;
+  }
+  header h1 span { color: var(--gold-lt); }
+  .subtitle {
+    color: var(--border);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.4rem;
+    padding: 0.6rem 0;
+    letter-spacing: 0.4em;
+    user-select: none;
+  }
+
+  .stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.2rem 2rem;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+  .controls {
+    padding: 1.2rem 2rem;
+    background: var(--parchment);
+    border-bottom: 1px solid rgba(184,134,11,0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .search-wrap { position: relative; flex: 1; min-width: 200px; }
+  .search-icon {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    padding: 0.6rem 2.2rem 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    font-family: 'Amiri', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    direction: rtl;
+    outline: none;
+  }
+  #search:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,134,11,0.15); }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Amiri', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { background: var(--cream); color: var(--gold); }
+  .filter-btn.active { background: var(--tag-bg); color: var(--tag-text); border-color: var(--tag-bg); }
+
+  .results-count { color: var(--muted); font-size: 0.85rem; margin-right: auto; flex-shrink: 0; }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 4rem;
+  }
+
+  .surah-group { margin-bottom: 2.5rem; }
+  .surah-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--deep);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 3px solid var(--gold);
+  }
+  .surah-num {
+    background: var(--gold);
+    color: var(--deep);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .surah-name { color: #fff; font-size: 1.15rem; font-weight: 700; }
+  .surah-count { margin-right: auto; color: var(--gold-lt); font-size: 0.8rem; font-style: italic; }
+
+  .verse-card {
+    background: #fff;
+    border: 1px solid rgba(184,134,11,0.25);
+    border-top: none;
+    padding: 1.4rem 1.4rem 1rem;
+    transition: box-shadow 0.2s;
+    position: relative;
+  }
+  .verse-card:not(:last-child) { border-bottom: 1px dashed rgba(184,134,11,0.3); }
+  .verse-card:last-child { border-radius: 0 0 8px 8px; }
+  .verse-card:hover { box-shadow: 0 4px 16px rgba(184,134,11,0.12); z-index: 1; }
+
+  .verse-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+    direction: ltr;
+  }
+  .verse-ref strong { color: var(--rust); font-size: 0.9rem; }
+
+  .daai-tag {
+    display: inline-block;
+    background: rgba(44,26,0,0.08);
+    color: var(--deep);
+    border: 1px solid rgba(44,26,0,0.15);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    padding: 0.15rem 0.6rem;
+    margin-bottom: 0.9rem;
+    margin-right: 0.5rem;
+  }
+
+  .arabic-text {
+    font-family: 'Amiri Quran', 'Amiri', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    line-height: 2.1;
+    color: var(--ink);
+    text-align: justify;
+    margin-bottom: 1rem;
+    direction: rtl;
+  }
+
+  .name-hl {
+    color: var(--gold);
+    font-weight: 700;
+    border-bottom: 1.5px solid var(--gold-glow);
+    padding-bottom: 1px;
+  }
+
+  .names-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .name-chip {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.7rem;
+    font-family: 'Amiri', serif;
+  }
+
+  .translation {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    direction: rtl;
+    border-right: 3px solid var(--border);
+    padding-right: 0.8rem;
+    font-style: italic;
+  }
+
+  #empty-state {
+    display: none;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--muted);
+  }
+  #empty-state .es-icon { font-size: 3rem; margin-bottom: 1rem; }
+  #empty-state p { font-size: 1.1rem; }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--deep);
+    color: var(--border);
+    font-size: 0.8rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem 1.5rem; }
+    .stats-bar { gap: 1rem; padding: 1rem; }
+    .controls { padding: 1rem; }
+    main { padding: 1rem 0.75rem 3rem; }
+    .arabic-text { font-size: 1.25rem; }
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="bismillah">بِسْمِ اللهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+  <h1>الآيات الجامعة بين <span>الدعاء</span> وأسماء الله الحسنى</h1>
+  <p class="subtitle">جرد شامل من القرآن الكريم · مرتّب حسب السور</p>
+</header>
+
+<div class="ornament">❧ ✦ ❧</div>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num" id="total-verses">36</span>
+    <span class="stat-label">آية / مجموعة</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">19</span>
+    <span class="stat-label">سورة</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">27+</span>
+    <span class="stat-label">اسم من الأسماء الحسنى</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">10+</span>
+    <span class="stat-label">نبي داعٍ</span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search" placeholder="ابحث عن سورة، اسم، أو داعٍ…" oninput="filterVerses()">
+  </div>
+  <button class="filter-btn active" data-filter="all" onclick="setFilter(this,'all')">الكل</button>
+  <button class="filter-btn" data-filter="anbiya" onclick="setFilter(this,'anbiya')">أدعية الأنبياء</button>
+  <button class="filter-btn" data-filter="muminun" onclick="setFilter(this,'muminun')">أدعية المؤمنين</button>
+  <button class="filter-btn" data-filter="malaikat" onclick="setFilter(this,'malaikat')">أدعية الملائكة</button>
+  <span class="results-count" id="results-count"></span>
+</div>
+
+<main id="main-content">
+
+  <!-- الفاتحة -->
+  <div class="surah-group" data-surah="الفاتحة">
+    <div class="surah-header">
+      <span class="surah-num">١</span>
+      <span class="surah-name">سورة الفاتحة</span>
+      <span class="surah-count">السورة كاملة</span>
+    </div>
+    <div class="verse-card" data-tags="muminun anbiya" data-text="الفاتحة رب رحمن رحيم مالك مؤمنون">
+      <div class="verse-ref"><strong>١:١–٧</strong> · الفاتحة</div>
+      <span class="daai-tag">جميع المؤمنين</span>
+      <div class="arabic-text">
+        بِسْمِ <span class="name-hl">اللَّهِ</span> <span class="name-hl">الرَّحْمَـٰنِ</span> <span class="name-hl">الرَّحِيمِ</span> ﴿١﴾ الْحَمْدُ لِلَّهِ <span class="name-hl">رَبِّ</span> الْعَالَمِينَ ﴿٢﴾ <span class="name-hl">الرَّحْمَـٰنِ</span> <span class="name-hl">الرَّحِيمِ</span> ﴿٣﴾ <span class="name-hl">مَالِكِ</span> يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾
+      </div>
+      <div class="names-row">
+        <span class="name-chip">الله</span><span class="name-chip">الرحمن</span><span class="name-chip">الرحيم</span><span class="name-chip">الرب</span><span class="name-chip">المالك</span>
+      </div>
+      <div class="translation">السورة كلها دعاء، تُفتتح بخمسة أسماء وصفات، وتختتم بسؤال الهداية — وهي أمّ الكتاب وخلاصة الدعاء القرآني.</div>
+    </div>
+  </div>
+
+  <!-- البقرة -->
+  <div class="surah-group" data-surah="البقرة">
+    <div class="surah-header">
+      <span class="surah-num">٢</span>
+      <span class="surah-name">سورة البقرة</span>
+      <span class="surah-count">٥ مواضع</span>
+    </div>
+    <div class="verse-card" data-tags="malaikat" data-text="البقرة ملائكة العليم الحكيم">
+      <div class="verse-ref"><strong>٢:٣٢</strong></div>
+      <span class="daai-tag">الملائكة</span>
+      <div class="arabic-text">قَالُوا سُبْحَانَكَ لَا عِلْمَ لَنَا إِلَّا مَا عَلَّمْتَنَا ۖ إِنَّكَ أَنتَ <span class="name-hl">الْعَلِيمُ</span> <span class="name-hl">الْحَكِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">العليم</span><span class="name-chip">الحكيم</span></div>
+      <div class="translation">دعاء الملائكة اعترافاً بقصور علمهم، مع التعلق بعلم الله وحكمته.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="البقرة إبراهيم إسماعيل السميع العليم بناء الكعبة">
+      <div class="verse-ref"><strong>٢:١٢٧</strong></div>
+      <span class="daai-tag">إبراهيم وإسماعيل ﵇</span>
+      <div class="arabic-text">وَإِذْ يَرْفَعُ إِبْرَاهِيمُ الْقَوَاعِدَ مِنَ الْبَيْتِ وَإِسْمَاعِيلُ رَبَّنَا تَقَبَّلْ مِنَّا ۖ إِنَّكَ أَنتَ <span class="name-hl">السَّمِيعُ</span> <span class="name-hl">الْعَلِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">السميع</span><span class="name-chip">العليم</span></div>
+      <div class="translation">دعاء أثناء رفع قواعد الكعبة — قبول العمل مقرون بالسمع والعلم الإلهي.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="البقرة إبراهيم التواب الرحيم ذرية">
+      <div class="verse-ref"><strong>٢:١٢٨</strong></div>
+      <span class="daai-tag">إبراهيم وإسماعيل ﵇</span>
+      <div class="arabic-text">رَبَّنَا وَاجْعَلْنَا مُسْلِمَيْنِ لَكَ وَمِن ذُرِّيَّتِنَا أُمَّةً مُّسْلِمَةً لَّكَ وَأَرِنَا مَنَاسِكَنَا وَتُبْ عَلَيْنَا ۖ إِنَّكَ أَنتَ <span class="name-hl">التَّوَّابُ</span> <span class="name-hl">الرَّحِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">التواب</span><span class="name-chip">الرحيم</span></div>
+      <div class="translation">استمرار دعاء البيت — طلب الإسلام للنفس والذرية، مع التوسل بالتواب الرحيم.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="البقرة إبراهيم العزيز الحكيم رسول">
+      <div class="verse-ref"><strong>٢:١٢٩</strong></div>
+      <span class="daai-tag">إبراهيم وإسماعيل ﵇</span>
+      <div class="arabic-text">رَبَّنَا وَابْعَثْ فِيهِمْ رَسُولًا مِّنْهُمْ يَتْلُو عَلَيْهِمْ آيَاتِكَ وَيُعَلِّمُهُمُ الْكِتَابَ وَالْحِكْمَةَ وَيُزَكِّيهِمْ ۚ إِنَّكَ أَنتَ <span class="name-hl">الْعَزِيزُ</span> <span class="name-hl">الْحَكِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">العزيز</span><span class="name-chip">الحكيم</span></div>
+      <div class="translation">دعاء ببعث النبي ﷺ — فيه بشارة صريحة بالنبوة المحمدية، مختتم بالعزيز الحكيم.</div>
+    </div>
+    <div class="verse-card" data-tags="muminun" data-text="البقرة مؤمنون المولى غفران">
+      <div class="verse-ref"><strong>٢:٢٨٦</strong></div>
+      <span class="daai-tag">المؤمنون</span>
+      <div class="arabic-text">رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ … أَنتَ <span class="name-hl">مَوْلَانَا</span> فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</div>
+      <div class="names-row"><span class="name-chip">المولى</span></div>
+      <div class="translation">خاتمة سورة البقرة — دعاء جامع شامل لكل حاجة، مختوم بوصف الله بالمولى الناصر.</div>
+    </div>
+  </div>
+
+  <!-- آل عمران -->
+  <div class="surah-group" data-surah="آل عمران">
+    <div class="surah-header">
+      <span class="surah-num">٣</span>
+      <span class="surah-name">سورة آل عمران</span>
+      <span class="surah-count">٤ مواضع</span>
+    </div>
+    <div class="verse-card" data-tags="muminun" data-text="آل عمران راسخون الوهاب قلوب هداية">
+      <div class="verse-ref"><strong>٣:٨</strong></div>
+      <span class="daai-tag">الراسخون في العلم</span>
+      <div class="arabic-text">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ <span class="name-hl">الْوَهَّابُ</span></div>
+      <div class="names-row"><span class="name-chip">الوهاب</span></div>
+      <div class="translation">دعاء ثبات القلب على الهداية — التوسل باسم الوهاب لطلب الرحمة والثبات.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="آل عمران نبي مالك الملك القدير سلطان">
+      <div class="verse-ref"><strong>٣:٢٦–٢٧</strong></div>
+      <span class="daai-tag">النبي ﷺ</span>
+      <div class="arabic-text">قُلِ اللَّهُمَّ <span class="name-hl">مَالِكَ الْمُلْكِ</span> تُؤْتِي الْمُلْكَ مَن تَشَاءُ وَتَنزِعُ الْمُلْكَ مِمَّن تَشَاءُ وَتُعِزُّ مَن تَشَاءُ وَتُذِلُّ مَن تَشَاءُ ۖ بِيَدِكَ الْخَيْرُ ۖ إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ <span class="name-hl">قَدِيرٌ</span></div>
+      <div class="names-row"><span class="name-chip">مالك الملك</span><span class="name-chip">القدير</span></div>
+      <div class="translation">دعاء يُعلَّم للنبي ﷺ — الإقرار بأن الملك والقدرة المطلقة لله وحده.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="آل عمران امرأة عمران السميع العليم نذر">
+      <div class="verse-ref"><strong>٣:٣٥</strong></div>
+      <span class="daai-tag">امرأة عمران</span>
+      <div class="arabic-text">إِذْ قَالَتِ امْرَأَتُ عِمْرَانَ رَبِّ إِنِّي نَذَرْتُ لَكَ مَا فِي بَطْنِي مُحَرَّرًا فَتَقَبَّلْ مِنِّي ۖ إِنَّكَ أَنتَ <span class="name-hl">السَّمِيعُ</span> <span class="name-hl">الْعَلِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">السميع</span><span class="name-chip">العليم</span></div>
+      <div class="translation">دعاء النذر قبل الولادة — الأم تُفوّض أمرها لله السميع العليم بما في الأرحام.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="آل عمران زكريا السميع الدعاء ذرية">
+      <div class="verse-ref"><strong>٣:٣٨</strong></div>
+      <span class="daai-tag">زكريا ﵇</span>
+      <div class="arabic-text">هُنَالِكَ دَعَا زَكَرِيَّا رَبَّهُ ۖ قَالَ رَبِّ هَبْ لِي مِن لَّدُنكَ ذُرِّيَّةً طَيِّبَةً ۖ إِنَّكَ <span class="name-hl">سَمِيعُ الدُّعَاءِ</span></div>
+      <div class="names-row"><span class="name-chip">سميع الدعاء</span></div>
+      <div class="translation">دعاء الذرية عند محراب مريم — مختتم باسم يُقرر أن الله لا يرد الدعاء.</div>
+    </div>
+  </div>
+
+  <!-- المائدة -->
+  <div class="surah-group" data-surah="المائدة">
+    <div class="surah-header">
+      <span class="surah-num">٥</span>
+      <span class="surah-name">سورة المائدة</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="المائدة عيسى الرزاق مائدة رزق">
+      <div class="verse-ref"><strong>٥:١١٤</strong></div>
+      <span class="daai-tag">عيسى ﵇</span>
+      <div class="arabic-text">قَالَ عِيسَى ابْنُ مَرْيَمَ اللَّهُمَّ رَبَّنَا أَنزِلْ عَلَيْنَا مَائِدَةً مِّنَ السَّمَاءِ تَكُونُ لَنَا عِيدًا لِّأَوَّلِنَا وَآخِرِنَا وَآيَةً مِّنكَ ۖ وَارْزُقْنَا وَأَنتَ خَيْرُ <span class="name-hl">الرَّازِقِينَ</span></div>
+      <div class="names-row"><span class="name-chip">خير الرازقين</span></div>
+      <div class="translation">دعاء نزول المائدة — طلب الآية الكونية والرزق من خير الرازقين.</div>
+    </div>
+  </div>
+
+  <!-- الأعراف -->
+  <div class="surah-group" data-surah="الأعراف">
+    <div class="surah-header">
+      <span class="surah-num">٧</span>
+      <span class="surah-name">سورة الأعراف</span>
+      <span class="surah-count">٣ مواضع</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأعراف شعيب الفتاح فصل حكم">
+      <div class="verse-ref"><strong>٧:٨٩</strong></div>
+      <span class="daai-tag">شعيب ﵇</span>
+      <div class="arabic-text">رَبَّنَا افْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ وَأَنتَ خَيْرُ <span class="name-hl">الْفَاتِحِينَ</span></div>
+      <div class="names-row"><span class="name-chip">خير الفاتحين</span></div>
+      <div class="translation">دعاء الفصل بين الحق والباطل — التوسل بالله خير الفاتحين والحاكمين.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأعراف موسى أرحم الراحمين غفران أخ هارون">
+      <div class="verse-ref"><strong>٧:١٥١</strong></div>
+      <span class="daai-tag">موسى ﵇</span>
+      <div class="arabic-text">قَالَ رَبِّ اغْفِرْ لِي وَلِأَخِي وَأَدْخِلْنَا فِي رَحْمَتِكَ ۖ وَأَنتَ <span class="name-hl">أَرْحَمُ الرَّاحِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">أرحم الراحمين</span></div>
+      <div class="translation">دعاء موسى بعد حادثة العجل والسامري — طلب الغفران والرحمة لنفسه ولأخيه هارون.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأعراف موسى الولي خير الغافرين فتنة">
+      <div class="verse-ref"><strong>٧:١٥٥</strong></div>
+      <span class="daai-tag">موسى ﵇</span>
+      <div class="arabic-text">قَالَ رَبِّ لَوْ شِئْتَ أَهْلَكْتَهُم مِّن قَبْلُ وَإِيَّايَ ۖ … إِنْ هِيَ إِلَّا فِتْنَتُكَ تُضِلُّ بِهَا مَن تَشَاءُ وَتَهْدِي مَن تَشَاءُ ۖ أَنتَ <span class="name-hl">وَلِيُّنَا</span> فَاغْفِرْ لَنَا وَارْحَمْنَا ۖ وَأَنتَ خَيْرُ <span class="name-hl">الْغَافِرِينَ</span></div>
+      <div class="names-row"><span class="name-chip">الولي</span><span class="name-chip">خير الغافرين</span></div>
+      <div class="translation">دعاء الاعتذار والولاية — الجمع بين الولي وخير الغافرين في دعاء واحد.</div>
+    </div>
+  </div>
+
+  <!-- هود -->
+  <div class="surah-group" data-surah="هود">
+    <div class="surah-header">
+      <span class="surah-num">١١</span>
+      <span class="surah-name">سورة هود</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="هود نوح الحق أحكم الحاكمين ابن وعد">
+      <div class="verse-ref"><strong>١١:٤٥</strong></div>
+      <span class="daai-tag">نوح ﵇</span>
+      <div class="arabic-text">وَنَادَىٰ نُوحٌ رَّبَّهُ فَقَالَ رَبِّ إِنَّ ابْنِي مِنْ أَهْلِي وَإِنَّ وَعْدَكَ <span class="name-hl">الْحَقُّ</span> وَأَنتَ <span class="name-hl">أَحْكَمُ الْحَاكِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">الحق</span><span class="name-chip">أحكم الحاكمين</span></div>
+      <div class="translation">دعاء نوح في شأن ابنه — الاحتجاج بصدق وعد الله وعظمة حكمه المطلق.</div>
+    </div>
+  </div>
+
+  <!-- يوسف -->
+  <div class="surah-group" data-surah="يوسف">
+    <div class="surah-header">
+      <span class="surah-num">١٢</span>
+      <span class="surah-name">سورة يوسف</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="يوسف الفاطر الولي توفى مسلم صالح">
+      <div class="verse-ref"><strong>١٢:١٠١</strong></div>
+      <span class="daai-tag">يوسف ﵇</span>
+      <div class="arabic-text">رَبِّ قَدْ آتَيْتَنِي مِنَ الْمُلْكِ وَعَلَّمْتَنِي مِن تَأْوِيلِ الْأَحَادِيثِ ۚ <span class="name-hl">فَاطِرَ</span> السَّمَاوَاتِ وَالْأَرْضِ أَنتَ <span class="name-hl">وَلِيِّي</span> فِي الدُّنْيَا وَالْآخِرَةِ ۖ تَوَفَّنِي مُسْلِمًا وَأَلْحِقْنِي بِالصَّالِحِينَ</div>
+      <div class="names-row"><span class="name-chip">الفاطر</span><span class="name-chip">الولي</span></div>
+      <div class="translation">خاتمة قصة يوسف — دعاء الخاتمة الحسنة مع التوسل بالفاطر والولي في الدنيا والآخرة.</div>
+    </div>
+  </div>
+
+  <!-- إبراهيم -->
+  <div class="surah-group" data-surah="إبراهيم">
+    <div class="surah-header">
+      <span class="surah-num">١٤</span>
+      <span class="surah-name">سورة إبراهيم</span>
+      <span class="surah-count">موضعان</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="إبراهيم الغفور الرحيم عصيان">
+      <div class="verse-ref"><strong>١٤:٣٦</strong></div>
+      <span class="daai-tag">إبراهيم ﵇</span>
+      <div class="arabic-text">فَمَن تَبِعَنِي فَإِنَّهُ مِنِّي ۖ وَمَنْ عَصَانِي فَإِنَّكَ <span class="name-hl">غَفُورٌ رَّحِيمٌ</span></div>
+      <div class="names-row"><span class="name-chip">الغفور</span><span class="name-chip">الرحيم</span></div>
+      <div class="translation">إبراهيم يستعطف لأمته — يلوذ بمغفرة الله ورحمته لمن خالف.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="إبراهيم السميع الدعاء كبر ذرية إسحاق إسماعيل شكر">
+      <div class="verse-ref"><strong>١٤:٣٩</strong></div>
+      <span class="daai-tag">إبراهيم ﵇</span>
+      <div class="arabic-text">الْحَمْدُ لِلَّهِ الَّذِي وَهَبَ لِي عَلَى الْكِبَرِ إِسْمَاعِيلَ وَإِسْحَاقَ ۚ إِنَّ رَبِّي <span class="name-hl">لَسَمِيعُ الدُّعَاءِ</span></div>
+      <div class="names-row"><span class="name-chip">سميع الدعاء</span></div>
+      <div class="translation">حمد وشكر على موهبة الذرية في الشيخوخة — شهادة من إبراهيم بأن ربه سميع الدعاء.</div>
+    </div>
+  </div>
+
+  <!-- الأنبياء -->
+  <div class="surah-group" data-surah="الأنبياء">
+    <div class="surah-header">
+      <span class="surah-num">٢١</span>
+      <span class="surah-name">سورة الأنبياء</span>
+      <span class="surah-count">٥ مواضع</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأنبياء أيوب أرحم الراحمين ضر مرض كرب">
+      <div class="verse-ref"><strong>٢١:٨٣</strong></div>
+      <span class="daai-tag">أيوب ﵇</span>
+      <div class="arabic-text">وَأَيُّوبَ إِذْ نَادَىٰ رَبَّهُ أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ <span class="name-hl">أَرْحَمُ الرَّاحِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">أرحم الراحمين</span></div>
+      <div class="translation">دعاء أيوب في الشدة — من أجمع أدعية الكرب وأوجزها، التوسل بأرحم الراحمين.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأنبياء يونس دعاء كرب توحيد لا إله إلا أنت حوت ظلمات">
+      <div class="verse-ref"><strong>٢١:٨٧</strong></div>
+      <span class="daai-tag">يونس ﵇ — دعاء الكرب العظيم</span>
+      <div class="arabic-text">وَذَا النُّونِ إِذ ذَّهَبَ مُغَاضِبًا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِي الظُّلُمَاتِ أَن <span class="name-hl">لَّا إِلَٰهَ إِلَّا أَنتَ</span> سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</div>
+      <div class="names-row"><span class="name-chip">لا إله إلا أنت (التوحيد الخالص)</span></div>
+      <div class="translation">دعاء يونس من بطن الحوت في الظلمات الثلاث — التوحيد الخالص ثم الاعتراف بالظلم.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأنبياء زكريا خير الوارثين ذرية يحيى">
+      <div class="verse-ref"><strong>٢١:٨٩</strong></div>
+      <span class="daai-tag">زكريا ﵇</span>
+      <div class="arabic-text">وَزَكَرِيَّا إِذْ نَادَىٰ رَبَّهُ رَبِّ لَا تَذَرْنِي فَرْدًا وَأَنتَ <span class="name-hl">خَيْرُ الْوَارِثِينَ</span></div>
+      <div class="names-row"><span class="name-chip">خير الوارثين</span></div>
+      <div class="translation">دعاء الذرية — طلب وارث في الدنيا مقرونًا بأن الله خير الوارثين في الآخرة.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الأنبياء نبي رحمن مستعان حكم">
+      <div class="verse-ref"><strong>٢١:١١٢</strong></div>
+      <span class="daai-tag">النبي ﷺ</span>
+      <div class="arabic-text">قَالَ رَبِّ احْكُم بِالْحَقِّ ۗ وَرَبُّنَا <span class="name-hl">الرَّحْمَـٰنُ</span> الْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ</div>
+      <div class="names-row"><span class="name-chip">الرحمن</span></div>
+      <div class="translation">خاتمة السورة — الاستعانة بالرحمن وحده على تكذيب المكذبين.</div>
+    </div>
+  </div>
+
+  <!-- المؤمنون -->
+  <div class="surah-group" data-surah="المؤمنون">
+    <div class="surah-header">
+      <span class="surah-num">٢٣</span>
+      <span class="surah-name">سورة المؤمنون</span>
+      <span class="surah-count">موضعان</span>
+    </div>
+    <div class="verse-card" data-tags="muminun" data-text="المؤمنون خير الراحمين غفران رحمة ثلة">
+      <div class="verse-ref"><strong>٢٣:١٠٩</strong></div>
+      <span class="daai-tag">المؤمنون</span>
+      <div class="arabic-text">إِنَّهُ كَانَ فَرِيقٌ مِّنْ عِبَادِي يَقُولُونَ رَبَّنَا آمَنَّا فَاغْفِرْ لَنَا وَارْحَمْنَا وَأَنتَ خَيْرُ <span class="name-hl">الرَّاحِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">خير الراحمين</span></div>
+      <div class="translation">وصف فريق المؤمنين المستحقين الجنة — جمعوا بين الإيمان والغفران والرحمة في دعاء واحد.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="المؤمنون نبي خير الراحمين غفران رحمة خاتمة">
+      <div class="verse-ref"><strong>٢٣:١١٨</strong></div>
+      <span class="daai-tag">النبي ﷺ</span>
+      <div class="arabic-text">وَقُل رَّبِّ اغْفِرْ وَارْحَمْ وَأَنتَ خَيْرُ <span class="name-hl">الرَّاحِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">خير الراحمين</span></div>
+      <div class="translation">خاتمة السورة — يُعلَّم النبي ﷺ دعاءً موجزاً عظيماً مختتماً بخير الراحمين.</div>
+    </div>
+  </div>
+
+  <!-- النمل -->
+  <div class="surah-group" data-surah="النمل">
+    <div class="surah-header">
+      <span class="surah-num">٢٧</span>
+      <span class="surah-name">سورة النمل</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="النمل بلقيس سبأ رب العالمين إسلام توبة سليمان">
+      <div class="verse-ref"><strong>٢٧:٤٤</strong></div>
+      <span class="daai-tag">ملكة سبأ (بلقيس)</span>
+      <div class="arabic-text">قَالَتْ رَبِّ إِنِّي ظَلَمْتُ نَفْسِي وَأَسْلَمْتُ مَعَ سُلَيْمَانَ لِلَّهِ <span class="name-hl">رَبِّ الْعَالَمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">رب العالمين</span></div>
+      <div class="translation">إعلان إسلام بلقيس — توبة وإقرار بالظلم مع تسليم كامل لله رب العالمين.</div>
+    </div>
+  </div>
+
+  <!-- القصص -->
+  <div class="surah-group" data-surah="القصص">
+    <div class="surah-header">
+      <span class="surah-num">٢٨</span>
+      <span class="surah-name">سورة القصص</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="القصص موسى الغفور الرحيم ظلم توبة مصر">
+      <div class="verse-ref"><strong>٢٨:١٦</strong></div>
+      <span class="daai-tag">موسى ﵇</span>
+      <div class="arabic-text">قَالَ رَبِّ إِنِّي ظَلَمْتُ نَفْسِي فَاغْفِرْ لِي فَغَفَرَ لَهُ ۚ إِنَّهُ هُوَ <span class="name-hl">الْغَفُورُ</span> <span class="name-hl">الرَّحِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">الغفور</span><span class="name-chip">الرحيم</span></div>
+      <div class="translation">توبة موسى في مصر — الاعتراف الصادق بالظلم واللجوء إلى الغفور الرحيم فأجابه.</div>
+    </div>
+  </div>
+
+  <!-- ص -->
+  <div class="surah-group" data-surah="ص">
+    <div class="surah-header">
+      <span class="surah-num">٣٨</span>
+      <span class="surah-name">سورة ص</span>
+      <span class="surah-count">موضعان</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="ص سليمان الوهاب ملك هبة فريد">
+      <div class="verse-ref"><strong>٣٨:٣٥</strong></div>
+      <span class="daai-tag">سليمان ﵇</span>
+      <div class="arabic-text">قَالَ رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي ۖ إِنَّكَ أَنتَ <span class="name-hl">الْوَهَّابُ</span></div>
+      <div class="names-row"><span class="name-chip">الوهاب</span></div>
+      <div class="translation">دعاء سليمان بالملك الفريد — توسل صريح باسم الوهاب لنيل هبة لم تُعطَ لأحد بعده.</div>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="ص أيوب أرحم الراحمين ضر كرب مرض">
+      <div class="verse-ref"><strong>٣٨:٤١</strong></div>
+      <span class="daai-tag">أيوب ﵇</span>
+      <div class="arabic-text">وَاذْكُرْ عَبْدَنَا أَيُّوبَ إِذْ نَادَىٰ رَبَّهُ أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ <span class="name-hl">أَرْحَمُ الرَّاحِمِينَ</span></div>
+      <div class="names-row"><span class="name-chip">أرحم الراحمين</span></div>
+      <div class="translation">رواية سورة ص لدعاء أيوب — إشارة موجزة تؤكد نفس الدعاء العظيم.</div>
+    </div>
+  </div>
+
+  <!-- الزمر -->
+  <div class="surah-group" data-surah="الزمر">
+    <div class="surah-header">
+      <span class="surah-num">٣٩</span>
+      <span class="surah-name">سورة الزمر</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الزمر نبي الفاطر عالم الغيب والشهادة حكم اختلاف">
+      <div class="verse-ref"><strong>٣٩:٤٦</strong></div>
+      <span class="daai-tag">النبي ﷺ</span>
+      <div class="arabic-text">قُلِ اللَّهُمَّ <span class="name-hl">فَاطِرَ</span> السَّمَاوَاتِ وَالْأَرْضِ <span class="name-hl">عَالِمَ الْغَيْبِ وَالشَّهَادَةِ</span> أَنتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِي مَا كَانُوا فِيهِ يَخْتَلِفُونَ</div>
+      <div class="names-row"><span class="name-chip">الفاطر</span><span class="name-chip">عالم الغيب والشهادة</span></div>
+      <div class="translation">دعاء تفويض الحكم لله — التوسل بالفاطر وعالم الغيب في الفصل بين المختلفين.</div>
+    </div>
+  </div>
+
+  <!-- غافر -->
+  <div class="surah-group" data-surah="غافر">
+    <div class="surah-header">
+      <span class="surah-num">٤٠</span>
+      <span class="surah-name">سورة غافر (المؤمن)</span>
+      <span class="surah-count">موضعان</span>
+    </div>
+    <div class="verse-card" data-tags="malaikat" data-text="غافر ملائكة حملة العرش الرحيم العليم رحمة علم واسع مغفرة تائبون">
+      <div class="verse-ref"><strong>٤٠:٧</strong></div>
+      <span class="daai-tag">الملائكة حملة العرش</span>
+      <div class="arabic-text">الَّذِينَ يَحْمِلُونَ الْعَرْشَ وَمَنْ حَوْلَهُ يُسَبِّحُونَ بِحَمْدِ رَبِّهِمْ وَيُؤْمِنُونَ بِهِ وَيَسْتَغْفِرُونَ لِلَّذِينَ آمَنُوا رَبَّنَا وَسِعْتَ كُلَّ شَيْءٍ <span class="name-hl">رَّحْمَةً</span> وَ<span class="name-hl">عِلْمًا</span> فَاغْفِرْ لِلَّذِينَ تَابُوا وَاتَّبَعُوا سَبِيلَكَ وَقِهِمْ عَذَابَ الْجَحِيمِ</div>
+      <div class="names-row"><span class="name-chip">واسع الرحمة</span><span class="name-chip">واسع العلم</span></div>
+      <div class="translation">دعاء الملائكة للمؤمنين التائبين — مستندين إلى سعة رحمة الله الشاملة وعلمه المحيط.</div>
+    </div>
+    <div class="verse-card" data-tags="malaikat" data-text="غافر ملائكة العزيز الحكيم جنة عدن ذرية أزواج">
+      <div class="verse-ref"><strong>٤٠:٨–٩</strong></div>
+      <span class="daai-tag">الملائكة حملة العرش</span>
+      <div class="arabic-text">رَبَّنَا وَأَدْخِلْهُمْ جَنَّاتِ عَدْنٍ الَّتِي وَعَدتَّهُمْ وَمَن صَلَحَ مِنْ آبَائِهِمْ وَأَزْوَاجِهِمْ وَذُرِّيَّاتِهِمْ ۚ إِنَّكَ أَنتَ <span class="name-hl">الْعَزِيزُ</span> <span class="name-hl">الْحَكِيمُ</span> ﴿٨﴾ وَقِهِمُ السَّيِّئَاتِ ۚ وَمَن تَقِ السَّيِّئَاتِ يَوْمَئِذٍ فَقَدْ رَحِمْتَهُ ۖ وَذَٰلِكَ هُوَ الْفَوْزُ الْعَظِيمُ ﴿٩﴾</div>
+      <div class="names-row"><span class="name-chip">العزيز</span><span class="name-chip">الحكيم</span></div>
+      <div class="translation">استمرار دعاء الملائكة — طلب جنة عدن للمؤمنين وآبائهم وأزواجهم وذرياتهم، ختماً بالعزيز الحكيم.</div>
+    </div>
+  </div>
+
+  <!-- الحشر -->
+  <div class="surah-group" data-surah="الحشر">
+    <div class="surah-header">
+      <span class="surah-num">٥٩</span>
+      <span class="surah-name">سورة الحشر</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="muminun" data-text="الحشر مؤمنون الرؤوف الرحيم غفران إخوان سابقون بالإيمان غل">
+      <div class="verse-ref"><strong>٥٩:١٠</strong></div>
+      <span class="daai-tag">المؤمنون من بعدهم</span>
+      <div class="arabic-text">وَالَّذِينَ جَاءُوا مِن بَعْدِهِمْ يَقُولُونَ رَبَّنَا اغْفِرْ لَنَا وَلِإِخْوَانِنَا الَّذِينَ سَبَقُونَا بِالْإِيمَانِ وَلَا تَجْعَلْ فِي قُلُوبِنَا غِلًّا لِّلَّذِينَ آمَنُوا ۚ رَبَّنَا إِنَّكَ <span class="name-hl">رَءُوفٌ رَّحِيمٌ</span></div>
+      <div class="names-row"><span class="name-chip">الرؤوف</span><span class="name-chip">الرحيم</span></div>
+      <div class="translation">دعاء المؤمنين لإخوانهم السابقين — طلب الغفران للجميع ونزع الغل من القلوب، ختماً بالرؤوف الرحيم.</div>
+    </div>
+  </div>
+
+  <!-- الممتحنة -->
+  <div class="surah-group" data-surah="الممتحنة">
+    <div class="surah-header">
+      <span class="surah-num">٦٠</span>
+      <span class="surah-name">سورة الممتحنة</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya" data-text="الممتحنة إبراهيم العزيز الحكيم فتنة كفار غفران">
+      <div class="verse-ref"><strong>٦٠:٥</strong></div>
+      <span class="daai-tag">إبراهيم وأتباعه ﵇</span>
+      <div class="arabic-text">رَبَّنَا لَا تَجْعَلْنَا فِتْنَةً لِّلَّذِينَ كَفَرُوا وَاغْفِرْ لَنَا رَبَّنَا ۖ إِنَّكَ أَنتَ <span class="name-hl">الْعَزِيزُ</span> <span class="name-hl">الْحَكِيمُ</span></div>
+      <div class="names-row"><span class="name-chip">العزيز</span><span class="name-chip">الحكيم</span></div>
+      <div class="translation">دعاء عدم الافتتان — طلب الحماية من الفتنة والمغفرة بتوسل بالعزيز الحكيم.</div>
+    </div>
+  </div>
+
+  <!-- التحريم -->
+  <div class="surah-group" data-surah="التحريم">
+    <div class="surah-header">
+      <span class="surah-num">٦٦</span>
+      <span class="surah-name">سورة التحريم</span>
+      <span class="surah-count">موضع واحد</span>
+    </div>
+    <div class="verse-card" data-tags="muminun" data-text="التحريم مؤمنون القدير نور صراط غفران">
+      <div class="verse-ref"><strong>٦٦:٨</strong></div>
+      <span class="daai-tag">المؤمنون</span>
+      <div class="arabic-text">رَبَّنَا أَتْمِمْ لَنَا نُورَنَا وَاغْفِرْ لَنَا ۖ إِنَّكَ عَلَىٰ كُلِّ شَيْءٍ <span class="name-hl">قَدِيرٌ</span></div>
+      <div class="names-row"><span class="name-chip">القدير</span></div>
+      <div class="translation">دعاء المؤمنين على الصراط يوم القيامة — طلب إتمام النور والمغفرة من القادر على كل شيء.</div>
+    </div>
+  </div>
+
+  <!-- الفلق -->
+  <div class="surah-group" data-surah="الفلق">
+    <div class="surah-header">
+      <span class="surah-num">١١٣</span>
+      <span class="surah-name">سورة الفلق</span>
+      <span class="surah-count">السورة كاملة</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya muminun" data-text="الفلق نبي الرب تعوذ شر مخلوقات حاسد سحر">
+      <div class="verse-ref"><strong>١١٣:١–٥</strong></div>
+      <span class="daai-tag">النبي ﷺ وكل مؤمن</span>
+      <div class="arabic-text">قُلْ أَعُوذُ بِ<span class="name-hl">رَبِّ</span> الْفَلَقِ ﴿١﴾ مِن شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾</div>
+      <div class="names-row"><span class="name-chip">رب الفلق</span></div>
+      <div class="translation">التعوذ الكوني بالرب المنسوب إلى الفلق — استعاذة شاملة من كل شر الخلق والليل والسحر والحسد.</div>
+    </div>
+  </div>
+
+  <!-- الناس -->
+  <div class="surah-group" data-surah="الناس">
+    <div class="surah-header">
+      <span class="surah-num">١١٤</span>
+      <span class="surah-name">سورة الناس</span>
+      <span class="surah-count">السورة كاملة</span>
+    </div>
+    <div class="verse-card" data-tags="anbiya muminun" data-text="الناس نبي الرب الملك الإله وسواس خناس جن شيطان تعوذ">
+      <div class="verse-ref"><strong>١١٤:١–٦</strong></div>
+      <span class="daai-tag">النبي ﷺ وكل مؤمن</span>
+      <div class="arabic-text">قُلْ أَعُوذُ بِ<span class="name-hl">رَبِّ</span> النَّاسِ ﴿١﴾ <span class="name-hl">مَلِكِ</span> النَّاسِ ﴿٢﴾ <span class="name-hl">إِلَٰهِ</span> النَّاسِ ﴿٣﴾ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾</div>
+      <div class="names-row"><span class="name-chip">الرب</span><span class="name-chip">الملك</span><span class="name-chip">الإله</span></div>
+      <div class="translation">خاتمة القرآن الكريم — تعوذ بثلاثة أسماء متتالية: الرب (الحماية)، الملك (السلطة)، الإله (العبادة والتوجه).</div>
+    </div>
+  </div>
+
+  <div id="empty-state">
+    <div class="es-icon">🔍</div>
+    <p>لا توجد نتائج. جرّب كلمة أخرى.</p>
+  </div>
+
+</main>
+
+<div class="ornament">❧ ✦ ❧</div>
+
+<footer>
+  <p>جمعت هذه الآيات بحسب منهج الجرد القرآني الموضوعي</p>
+  <p>المصدر: القرآن الكريم الكريم | التصنيف: دعاء + أسماء الله الحسنى</p>
+  <p style="margin-top:0.4rem; color: var(--gold-lt); font-size: 0.75rem;">٣٦ موضعًا · ١٩ سورة · ٢٧+ اسمًا</p>
+</footer>
+
+<script>
+  let activeFilter = 'all';
+
+  function setFilter(btn, filter) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = filter;
+    filterVerses();
+  }
+
+  function filterVerses() {
+    const query = document.getElementById('search').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.verse-card');
+    const groups = document.querySelectorAll('.surah-group');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      const searchText = (card.dataset.text || '') + ' ' + card.textContent;
+      const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
+      const matchesSearch = !query || searchText.toLowerCase().includes(query);
+      const visible = matchesFilter && matchesSearch;
+      card.classList.toggle('hidden', !visible);
+      if (visible) visibleCount++;
+    });
+
+    groups.forEach(group => {
+      const anyVisible = [...group.querySelectorAll('.verse-card')].some(c => !c.classList.contains('hidden'));
+      group.classList.toggle('hidden', !anyVisible);
+    });
+
+    const countEl = document.getElementById('results-count');
+    countEl.textContent = (query || activeFilter !== 'all') ? `${visibleCount} نتيجة` : '';
+
+    document.getElementById('empty-state').style.display = visibleCount === 0 ? 'block' : 'none';
+    document.getElementById('total-verses').textContent = visibleCount || 36;
+  }
+</script>
+</body>
+</html>
