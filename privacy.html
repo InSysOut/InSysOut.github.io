@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#08101f" />
+
+<!-- Primary SEO -->
+<title>Privacy Policy — InSysOut ANPR Event Viewer</title>
+<meta name="description" content="Privacy Policy for InSysOut ANPR Event Viewer — a local, on-device developer and integration tool for reviewing ANPR/LPR event payloads." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.insysout.com/privacy.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.insysout.com/privacy.html" />
+<meta property="og:title" content="Privacy Policy — InSysOut ANPR Event Viewer" />
+<meta property="og:description" content="Privacy Policy for InSysOut ANPR Event Viewer." />
+<meta property="og:image" content="https://www.insysout.com/logo.png" />
+<meta property="og:site_name" content="InSysOut" />
+
+<!-- Favicons -->
+<link rel="icon" href="https://www.insysout.com/logo.png" />
+<link rel="apple-touch-icon" href="https://www.insysout.com/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #08101f;
+    --bg-2:      #0f1d33;
+    --ink:       #e8edf5;
+    --muted:     #8593ad;
+    --line:      rgba(192, 199, 215, 0.12);
+    --line-2:    rgba(192, 199, 215, 0.22);
+
+    --blue:      #4a8fff;
+    --blue-soft: #2d5fb8;
+    --silver:    #c8d0de;
+    --gold:      #d4a64a;
+    --gold-soft: #b8862d;
+
+    --maxw: 820px;
+    --display: "Outfit", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --arabic: "IBM Plex Sans Arabic", "Outfit", system-ui, sans-serif;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Atmospheric background — matches landing page */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::after{
+    content:"";
+    position: fixed;
+    inset: -10% -10% auto -10%;
+    height: 90vh;
+    background:
+      radial-gradient(ellipse 600px 500px at 22% 18%, rgba(123, 63, 255, 0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 500px at 78% 12%, rgba(192, 38, 211, 0.18) 0%, transparent 62%),
+      radial-gradient(ellipse 800px 600px at 50% 0%,  rgba(74, 143, 255, 0.28) 0%, transparent 65%),
+      radial-gradient(ellipse 400px 300px at 90% 40%, rgba(34, 211, 238, 0.10) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(20px);
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  a:focus-visible{
+    outline: 1px solid var(--blue);
+    outline-offset: 4px;
+  }
+
+  .shell{
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 24px 22px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ────────────────────────────────────────── */
+  .header{ padding: 8px 0 48px; }
+  .header-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .brand{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo{
+    width: 64px; height: 64px;
+    object-fit: contain;
+    display: block;
+  }
+  .wordmark{
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+  .wordmark .wm-en span{ color: var(--blue); }
+
+  .header-actions{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .back-link{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    transition: color 180ms ease, border-color 180ms ease;
+  }
+  .back-link:hover{
+    color: var(--ink);
+    border-color: var(--line-2);
+  }
+
+  /* Language toggle */
+  .lang-toggle{
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line-2);
+    background: transparent;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    font-family: var(--mono);
+  }
+  .lang-toggle span{
+    padding: 6px 10px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    transition: background 180ms ease, color 180ms ease;
+  }
+  .lang-toggle span.active{
+    background: var(--blue);
+    color: #fff;
+  }
+  .lang-toggle:hover span:not(.active){ color: var(--ink); }
+
+  /* Meta strip */
+  .meta-strip{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0 0;
+    border-top: 1px solid var(--line-2);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+  .meta-strip .item{ display: inline-flex; align-items: center; gap: 8px; }
+  .meta-strip .label{ color: var(--gold); opacity: 0.7; }
+  .meta-strip .value{ color: var(--silver); }
+
+  /* ── Document ─────────────────────────────────────── */
+  .doc{ padding: 8px 0 64px; }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  h1{
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(30px, 6vw, 46px);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+  }
+  .effective{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin: 0 0 20px;
+  }
+  .intro{
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--silver);
+    margin: 0 0 8px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line-2);
+  }
+
+  h2{
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::before{
+    content: "";
+    width: 6px; height: 6px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .doc p{
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 0 14px;
+    max-width: 68ch;
+  }
+  .doc p.lead{ color: var(--silver); }
+  .doc a.mail{
+    color: var(--blue);
+    border-bottom: 1px solid var(--blue-soft);
+    transition: border-color 160ms ease;
+  }
+  .doc a.mail:hover{ border-color: var(--blue); }
+
+  /* ── Footer ───────────────────────────────────────── */
+  footer{
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 40px 22px 32px;
+    border-top: 1px solid var(--line-2);
+    position: relative;
+    z-index: 1;
+  }
+  .foot-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .copyright{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+  .copyright .sep{ color: var(--line-2); margin: 0 8px; }
+  .social{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .social a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--muted);
+    border: 1px solid var(--line-2);
+    transition: color 200ms ease, border-color 200ms ease, background 200ms ease, transform 200ms ease;
+  }
+  .social a svg{ width: 15px; height: 15px; display: block; }
+  .social a:hover{
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(212, 166, 74, 0.06);
+    transform: translateY(-1px);
+  }
+
+  /* ── Arabic mode ──────────────────────────────────── */
+  [lang="ar"] body,
+  [lang="ar"] h1,
+  [lang="ar"] h2,
+  [lang="ar"] .intro,
+  [lang="ar"] .doc p,
+  [lang="ar"] .wordmark,
+  [lang="ar"] .back-link{
+    font-family: var(--arabic);
+  }
+  [lang="ar"] .eyebrow,
+  [lang="ar"] .effective,
+  [lang="ar"] .meta-strip,
+  [lang="ar"] .copyright,
+  [lang="ar"] .back-link{
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  [lang="ar"] h1{ line-height: 1.4; letter-spacing: 0; }
+  [lang="ar"] .eyebrow::before{
+    background: linear-gradient(270deg, var(--gold), transparent);
+  }
+  /* Email + app name stay LTR inside Arabic text */
+  [lang="ar"] a.mail,
+  [lang="ar"] .ltr{
+    direction: ltr;
+    unicode-bidi: embed;
+    display: inline-block;
+  }
+
+  @media (min-width: 720px){
+    .shell{ padding: 36px 40px 0; }
+    .header{ padding-bottom: 56px; }
+    footer{ padding: 48px 40px 36px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="shell">
+
+    <header class="header">
+      <div class="header-top">
+        <a class="brand" href="https://www.insysout.com/" aria-label="InSysOut home">
+          <img src="https://www.insysout.com/logo.png" alt="InSysOut logo" class="logo" />
+          <span class="wordmark">
+            <span class="wm-en">InSys<span>Out</span></span>
+            <span class="wm-ar" hidden>إن سيس آوت</span>
+          </span>
+        </a>
+        <div class="header-actions">
+          <a class="back-link" href="https://www.insysout.com/" data-en="← Home" data-ar="→ الرئيسية">← Home</a>
+          <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+            <span class="lang-en active">EN</span>
+            <span class="lang-ar">ع</span>
+          </button>
+        </div>
+      </div>
+      <div class="meta-strip">
+        <span class="item"><span class="label">DOC</span><span class="value" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</span></span>
+        <span class="item"><span class="label">APP</span><span class="value ltr">ANPR Event Viewer</span></span>
+      </div>
+    </header>
+
+    <article class="doc">
+      <p class="eyebrow" data-en="Legal" data-ar="قانوني">Legal</p>
+      <h1 data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</h1>
+      <p class="effective" data-en="InSysOut ANPR Event Viewer · Effective Date: July 2026" data-ar="عارض أحداث ANPR من InSysOut · تاريخ السريان: يوليو 2026"><span class="ltr">InSysOut ANPR Event Viewer</span> · Effective Date: July 2026</p>
+
+      <p class="intro lead" data-en="InSysOut ANPR Event Viewer is a developer and integration tool for viewing ANPR/LPR event payloads, vehicle images, plate crops, raw payloads, and related event metadata." data-ar="عارض أحداث ANPR من InSysOut هو أداة للمطوّرين والتكامل تُستخدم لعرض حِزم بيانات أحداث ANPR/LPR، وصور المركبات، وقصاصات اللوحات، والحِزم الخام، وبيانات الأحداث الوصفية ذات الصلة.">InSysOut ANPR Event Viewer is a developer and integration tool for viewing ANPR/LPR event payloads, vehicle images, plate crops, raw payloads, and related event metadata.</p>
+
+      <h2 data-en="Data Collection" data-ar="جمع البيانات">Data Collection</h2>
+      <p data-en="The app does not collect, transmit, sell, or share personal data with InSysOut or third parties." data-ar="لا يقوم التطبيق بجمع أو نقل أو بيع أو مشاركة البيانات الشخصية مع InSysOut أو أي أطراف ثالثة.">The app does not collect, transmit, sell, or share personal data with InSysOut or third parties.</p>
+
+      <h2 data-en="Imported Files" data-ar="الملفات المستوردة">Imported Files</h2>
+      <p data-en="Users may import ANPR event files from local device storage or supported file providers through the operating system file picker. Imported files may include JSON, XML, CSV, SQL, Protobuf, vehicle images, plate images, timestamps, camera metadata, location text, and other event fields." data-ar="يمكن للمستخدمين استيراد ملفات أحداث ANPR من وحدة التخزين المحلية للجهاز أو من موفّري الملفات المدعومين عبر أداة اختيار الملفات في نظام التشغيل. قد تتضمّن الملفات المستوردة صيغ JSON وXML وCSV وSQL وProtobuf، وصور المركبات، وصور اللوحات، والطوابع الزمنية، وبيانات الكاميرا الوصفية، ونصوص الموقع، وحقول أحداث أخرى.">Users may import ANPR event files from local device storage or supported file providers through the operating system file picker. Imported files may include JSON, XML, CSV, SQL, Protobuf, vehicle images, plate images, timestamps, camera metadata, location text, and other event fields.</p>
+      <p data-en="Imported files are processed locally on the device for display and review. The app does not upload imported files to InSysOut servers." data-ar="تُعالَج الملفات المستوردة محليًا على الجهاز بغرض العرض والمراجعة. لا يقوم التطبيق برفع الملفات المستوردة إلى خوادم InSysOut.">Imported files are processed locally on the device for display and review. The app does not upload imported files to InSysOut servers.</p>
+
+      <h2 data-en="Google Drive and File Providers" data-ar="جوجل درايف وموفّرو الملفات">Google Drive and File Providers</h2>
+      <p data-en="The app does not include direct Google Drive account integration. Users may access Google Drive files only through the standard operating system file picker if Google Drive is installed and enabled on the device." data-ar="لا يتضمّن التطبيق تكاملًا مباشرًا مع حساب جوجل درايف. يمكن للمستخدمين الوصول إلى ملفات جوجل درايف فقط عبر أداة اختيار الملفات القياسية في نظام التشغيل، وذلك في حال كان جوجل درايف مثبَّتًا ومُفعَّلًا على الجهاز.">The app does not include direct Google Drive account integration. Users may access Google Drive files only through the standard operating system file picker if Google Drive is installed and enabled on the device.</p>
+
+      <h2 data-en="Photos, Camera, and Location Permissions" data-ar="أذونات الصور والكاميرا والموقع">Photos, Camera, and Location Permissions</h2>
+      <p data-en="The app may include permission descriptions for photo library, camera, or location access because operating system libraries or file import plugins can reference these protected APIs." data-ar="قد يتضمّن التطبيق أوصاف أذونات للوصول إلى مكتبة الصور أو الكاميرا أو الموقع، لأن مكتبات نظام التشغيل أو إضافات استيراد الملفات قد تشير إلى واجهات برمجية محمية من هذا النوع.">The app may include permission descriptions for photo library, camera, or location access because operating system libraries or file import plugins can reference these protected APIs.</p>
+      <p data-en="The app uses these permissions only when the user chooses to import, capture, attach, or review ANPR event files, vehicle images, plate images, or related event context." data-ar="يستخدم التطبيق هذه الأذونات فقط عندما يختار المستخدم استيراد أو التقاط أو إرفاق أو مراجعة ملفات أحداث ANPR أو صور المركبات أو صور اللوحات أو سياق الأحداث ذي الصلة.">The app uses these permissions only when the user chooses to import, capture, attach, or review ANPR event files, vehicle images, plate images, or related event context.</p>
+      <p data-en="The app does not continuously access the camera, photo library, or location in the background." data-ar="لا يصل التطبيق باستمرار إلى الكاميرا أو مكتبة الصور أو الموقع في الخلفية.">The app does not continuously access the camera, photo library, or location in the background.</p>
+
+      <h2 data-en="In-App Purchases" data-ar="عمليات الشراء داخل التطبيق">In-App Purchases</h2>
+      <p data-en="The app may offer a Pro unlock through Apple In-App Purchase. Purchase processing is handled by Apple. InSysOut does not receive or store full payment card information." data-ar="قد يوفّر التطبيق ترقية Pro عبر خدمة الشراء داخل التطبيق من Apple. تتولّى Apple معالجة عمليات الشراء. لا تتلقّى InSysOut معلومات بطاقة الدفع الكاملة ولا تخزّنها.">The app may offer a Pro unlock through Apple In-App Purchase. Purchase processing is handled by Apple. InSysOut does not receive or store full payment card information.</p>
+
+      <h2 data-en="Children" data-ar="الأطفال">Children</h2>
+      <p data-en="This app is intended for professional, developer, operational, and integration use. It is not directed to children." data-ar="هذا التطبيق مخصّص للاستخدام المهني والتطويري والتشغيلي والتكاملي. وهو غير موجَّه للأطفال.">This app is intended for professional, developer, operational, and integration use. It is not directed to children.</p>
+
+      <h2 data-en="Data Sharing" data-ar="مشاركة البيانات">Data Sharing</h2>
+      <p data-en="The app does not sell or share user data." data-ar="لا يبيع التطبيق بيانات المستخدمين ولا يشاركها.">The app does not sell or share user data.</p>
+
+      <h2 data-en="Contact" data-ar="التواصل">Contact</h2>
+      <p data-en="For privacy questions or feature requests, contact:" data-ar="للاستفسارات المتعلقة بالخصوصية أو طلبات الميزات، تواصل عبر:">For privacy questions or feature requests, contact:</p>
+      <p><a class="mail" href="mailto:hello@insysout.com">hello@insysout.com</a></p>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="foot-top">
+      <p class="copyright"
+         data-en-html="© <span id=&quot;year&quot;>2026</span> InSysOut <span class=&quot;sep&quot;>/</span> All rights reserved"
+         data-ar-html="© <span id=&quot;year&quot;>2026</span> إن سيس آوت <span class=&quot;sep&quot;>/</span> جميع الحقوق محفوظة">
+        © <span id="year">2026</span> InSysOut <span class="sep">/</span> All rights reserved
+      </p>
+      <ul class="social">
+        <li><a href="https://x.com/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on X">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a></li>
+        <li><a href="https://instagram.com/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/></svg>
+        </a></li>
+        <li><a href="https://facebook.com/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21.95V13.5h2.86l.43-3.32H13.5V8.06c0-.96.27-1.62 1.65-1.62h1.76V3.47A23.6 23.6 0 0 0 14.34 3.34c-2.54 0-4.28 1.55-4.28 4.4v2.44H7.2v3.32h2.86v8.45z"/></svg>
+        </a></li>
+        <li><a href="https://youtube.com/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.51a3.02 3.02 0 0 0-2.12-2.13C19.5 3.86 12 3.86 12 3.86s-7.5 0-9.38.52A3.02 3.02 0 0 0 .5 6.51 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.49 3.02 3.02 0 0 0 2.12 2.13c1.88.52 9.38.52 9.38.52s7.5 0 9.38-.52a3.02 3.02 0 0 0 2.12-2.13A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.49M9.6 15.6V8.4l6.24 3.6z"/></svg>
+        </a></li>
+        <li><a href="https://tiktok.com/@insysout" rel="me noopener" target="_blank" aria-label="InSysOut on TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.6a8.16 8.16 0 0 0 4.77 1.52V6.69z"/></svg>
+        </a></li>
+        <li><a href="https://linkedin.com/company/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13M7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0"/></svg>
+        </a></li>
+        <li><a href="https://github.com/insysout" rel="me noopener" target="_blank" aria-label="InSysOut on GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.46-1.34-5.46-5.95 0-1.32.46-2.4 1.23-3.24-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.24a11.5 11.5 0 0 1 6 0c2.28-1.56 3.29-1.24 3.29-1.24.66 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.24 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3"/></svg>
+        </a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    const toggle = document.getElementById('lang-toggle');
+    const enBtn = toggle.querySelector('.lang-en');
+    const arBtn = toggle.querySelector('.lang-ar');
+    const wmEn = document.querySelector('.wm-en');
+    const wmAr = document.querySelector('.wm-ar');
+
+    function setLanguage(lang){
+      const isAr = lang === 'ar';
+      html.lang = lang;
+      html.dir = isAr ? 'rtl' : 'ltr';
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const v = el.getAttribute(isAr ? 'data-ar' : 'data-en');
+        if (v !== null) el.textContent = v;
+      });
+      document.querySelectorAll('[data-en-html]').forEach(el => {
+        const v = el.getAttribute(isAr ? 'data-ar-html' : 'data-en-html');
+        if (v !== null) el.innerHTML = v;
+      });
+
+      wmEn.hidden = isAr;
+      wmAr.hidden = !isAr;
+      enBtn.classList.toggle('active', !isAr);
+      arBtn.classList.toggle('active', isAr);
+
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      try { localStorage.setItem('insysout-lang', lang); } catch(e){}
+    }
+
+    toggle.addEventListener('click', () => {
+      setLanguage(html.lang === 'ar' ? 'en' : 'ar');
+    });
+
+    let initial = 'en';
+    try {
+      const saved = localStorage.getItem('insysout-lang');
+      if (saved === 'ar' || saved === 'en') initial = saved;
+    } catch(e){}
+    setLanguage(initial);
+  </script>
+
+</body>
+</html>
