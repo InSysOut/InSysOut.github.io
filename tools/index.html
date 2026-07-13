@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08101f">
+<title>InSysOut — Dev Toolbox</title>
+<meta name="author" content="InSysOut">
+<meta name="description" content="InSysOut Dev Toolbox — 45+ fast, private, offline-friendly developer utilities: encoders, hashes, ciphers, converters, formatters, unit &amp; data tools. Runs entirely in your browser.">
+<meta name="keywords" content="developer tools, dev toolbox, base64, md5, sha256, hash, jwt decoder, json formatter, url encoder, cipher, unit converter, bitwise, QR code, InSysOut">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.insysout.com/tools/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="InSysOut">
+<meta property="og:title" content="InSysOut — Dev Toolbox">
+<meta property="og:description" content="45+ private, offline-friendly developer utilities. Runs entirely in your browser.">
+<meta property="og:url" content="https://www.insysout.com/tools/">
+<meta property="og:image" content="https://www.insysout.com/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@insysout">
+<meta name="twitter:title" content="InSysOut — Dev Toolbox">
+<meta name="twitter:description" content="45+ private, offline-friendly developer utilities.">
+<meta name="twitter:image" content="https://www.insysout.com/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hdr">
+  <a class="brand" href="#">
+    <img class="logo" src="https://www.insysout.com/logo.png" alt="InSysOut logo" width="40" height="40">
+    <span class="brand-txt"><b>InSysOut</b><em>Dev Toolbox</em></span>
+  </a>
+  <div class="hdr-meta">
+    <span class="chip mono"><i>VER</i> v1.0</span>
+    <span class="chip mono"><i>GST</i> <span id="clock">--:--</span></span>
+    <span class="chip mono"><span class="dot" title="Online"></span> Online</span>
+  </div>
+</header>
+
+<main id="view" class="view"></main>
+
+<footer class="ftr">
+  <span>© <span id="yr"></span> InSysOut / All rights reserved — client-side only, nothing leaves your browser.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hash-wasm@4.12.0/dist/index.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
