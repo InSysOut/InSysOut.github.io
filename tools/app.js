@@ -521,9 +521,3 @@ function showTool(t){
 function route(){const id=location.hash.slice(1);const t=TOOLS.find(x=>x.id===id);t?showTool(t):showHome();}
 window.addEventListener('hashchange',route);
 route();
-
-/* GST clock + year */
-function tick(){try{document.getElementById('clock').textContent=
-  new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dubai',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());}catch(e){}}
-tick();setInterval(tick,30000);
-document.getElementById('yr').textContent=new Date().getFullYear();
