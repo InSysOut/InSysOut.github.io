@@ -160,7 +160,6 @@
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 24px;
-    flex-wrap: wrap;
   }
   .brand{
     display: flex;
@@ -182,12 +181,8 @@
 
   /* Nav */
   .nav{
-    display: flex;
+    display: none;
     gap: 6px;
-    flex-wrap: wrap;
-  }
-  @media (max-width: 719px){
-    .nav a:not(.tools){ display: none; }
   }
   .nav a{
     font-family: var(--mono);
@@ -760,7 +755,7 @@
             <a href="#about" data-en="About" data-ar="من نحن">About</a>
             <a href="#publications" data-en="Research" data-ar="أبحاث">Research</a>
             <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
-            <a href="/tools/" class="tools" data-en="Tools" data-ar="أدوات">Tools</a>
+            <a href="/tools/" data-en="Tools" data-ar="أدوات">Tools</a>
           </nav>
           <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
             <span class="lang-en active">EN</span>

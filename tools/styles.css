@@ -119,12 +119,13 @@ input[type=range]{accent-color:var(--blue2)}
 .shell{width:100%;max-width:1080px;margin:0 auto;padding:24px 22px 0;position:relative;z-index:1}
 .shell .view{max-width:none;margin:0;padding:0 0 60px}
 .header{padding:8px 0 56px}
-.header-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .header .brand{display:flex;align-items:center;gap:14px}
 .header .logo{width:64px;height:64px;object-fit:contain;display:block;filter:none}
 .wordmark{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
 .wordmark .wm-en span{color:var(--blue)}
-.nav{display:none;gap:6px}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+@media(max-width:719px){.nav a:not(.tools){display:none}}
 .nav a{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border:1px solid transparent;transition:color .18s ease,border-color .18s ease}
 .nav a:hover,.nav a.active{color:var(--ink);border-color:var(--line-2)}
 .lang-toggle{display:inline-flex;align-items:center;border:1px solid var(--line-2);background:transparent;padding:0;overflow:hidden;cursor:pointer;font-family:var(--mono)}
@@ -149,3 +150,8 @@ footer{width:100%;max-width:1080px;margin:0 auto;padding:40px 22px 32px;border-t
 [lang="ar"] .wordmark,[lang="ar"] .nav a{font-family:var(--arabic)}
 [lang="ar"] .meta-strip,[lang="ar"] .copyright,[lang="ar"] .nav a{text-transform:none;letter-spacing:.02em}
 @media(min-width:720px){.shell{padding:36px 40px 0}.header{padding-bottom:80px}.nav{display:flex}footer{padding:48px 40px 36px}}
+
+/* ===== Arabic / RTL for the toolbox ===== */
+[lang="ar"] .view{font-family:'IBM Plex Sans Arabic','Outfit',system-ui,sans-serif}
+[dir="rtl"] input.in,[dir="rtl"] textarea.in,[dir="rtl"] .out,[dir="rtl"] .kv-v{direction:ltr;text-align:left}
+[dir="rtl"] .copy{right:auto;left:8px}

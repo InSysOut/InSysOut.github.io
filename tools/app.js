@@ -14,13 +14,49 @@ function h(tag, attrs, ...kids){
   for(const c of kids){ if(c==null||c===false) continue; e.append(c.nodeType?c:document.createTextNode(c)); }
   return e;
 }
-const inp=(ph,type='text')=>h('input',{class:'in',type,placeholder:ph||''});
-const ta =(ph,rows=4)=>h('textarea',{class:'in',rows,placeholder:ph||''});
-const sel=(opts,val)=>{const s=h('select',{class:'in'});opts.forEach(([v,n])=>s.append(h('option',{value:v},n)));if(val!=null)s.value=val;return s;};
-const btn=(label,cls='btn',on)=>h('button',{class:cls,onClick:on},label);
-const field=(label,node,hint)=>h('label',{class:'fld'},h('span',{class:'lbl'},label),node,hint?h('span',{class:'hint'},hint):null);
+let LANG=document.documentElement.lang==='ar'?'ar':'en';
+const AR={
+/* categories */
+'Crypto':'التشفير','Cipher':'الشيفرات','Converter':'المحوّلات','Text':'النص','Data':'البيانات','Web':'الويب','Network':'الشبكات','Math':'الرياضيات','Media':'الوسائط',
+/* chrome */
+'Search tools…':'…ابحث عن أداة','← All tools':'→ كل الأدوات','Copy':'نسخ','Copied ✓':'✓ تم النسخ',
+/* tool names */
+'Password Generator':'مولّد كلمات المرور','UUID Generator':'مولّد UUID','Hash & Checksum':'التجزئة والتحقق','HMAC':'HMAC',
+'Morse Code':'شيفرة مورس','NATO Phonetic':'أبجدية الناتو الصوتية','Rotation Cipher':'شيفرة الإزاحة','XOR Cipher':'شيفرة XOR','Vigenère Cipher':'شيفرة فيجينير','Atbash Cipher':'شيفرة أتباش','A1Z26 Cipher':'شيفرة A1Z26',
+'Base64':'Base64','Base Converter':'محوّل الأساس','Color Converter':'محوّل الألوان','Case Converter':'محوّل حالة الأحرف','Roman Numerals':'الأرقام الرومانية','Temperature':'درجة الحرارة','Date & Timestamp':'التاريخ والطابع الزمني','Char Code Converter':'محوّل رموز الأحرف','Unit Converter':'محوّل الوحدات',
+'Text Statistics':'إحصائيات النص','Lorem Ipsum':'نص وهمي','Reverse Text':'عكس النص','Line Tools':'أدوات الأسطر','Find & Replace':'بحث واستبدال','Text Diff':'مقارنة النصوص',
+'CSV ↔ JSON':'CSV ↔ JSON','Random Numbers':'أرقام عشوائية','Set Operations':'عمليات المجموعات',
+'URL Encode / Decode':'ترميز/فك URL','URL Parser':'محلّل URL','HTML Entities':'كيانات HTML','JWT Parser':'محلّل JWT','Slugify':'تحويل إلى Slug','Basic Auth':'مصادقة أساسية','JSON Formatter':'منسّق JSON','Defang / Fang':'تحييد/استعادة الروابط','Data Extractor':'مستخرج البيانات',
+'IPv4 Subnet':'شبكة IPv4 الفرعية',
+'Math Evaluator':'مُقيّم رياضي','Percentage':'النسبة المئوية',"Ohm's Law":'قانون أوم','Prime Numbers':'الأعداد الأولية','Number Stats':'إحصائيات الأرقام','Bitwise Ops':'عمليات البتات',
+'QR Code':'رمز QR','Image Converter':'محوّل الصور',
+/* descriptions */
+'Strong random tokens & passwords':'رموز وكلمات مرور عشوائية قوية','RFC 4122 v4 identifiers':'معرّفات RFC 4122 الإصدار 4','MD2/4/5 · CRC32 · RIPEMD · SHA · Whirlpool':'MD2/4/5 · CRC32 · RIPEMD · SHA · Whirlpool','Keyed hash (SHA-1/256/384/512)':'تجزئة بمفتاح (SHA-1/256/384/512)',
+'Text ↔ Morse':'نص ↔ مورس','Spell text with the NATO alphabet':'تهجئة النص بأبجدية الناتو','ROT13 · ROT47 · Caesar shift':'ROT13 · ROT47 · إزاحة قيصر','XOR bytes with a key → hex':'XOR للبايتات بمفتاح ← ست عشري','Keyword cipher encode / decode':'تشفير/فك بكلمة مفتاحية','Mirror-alphabet substitution':'استبدال بأبجدية معكوسة','Letters ↔ numbers (a=1…z=26)':'حروف ↔ أرقام (a=1…z=26)',
+'Encode / decode text (UTF-8 safe)':'ترميز/فك النص (يدعم UTF-8)','Bin · Oct · Dec · Hex · 32 · 36':'ثنائي · ثماني · عشري · ست عشري · 32 · 36','HEX ↔ RGB ↔ HSL':'HEX ↔ RGB ↔ HSL','camel, snake, kebab, Title…':'camel، snake، kebab، Title…','Arabic ↔ Roman (1–3999)':'عربي ↔ روماني (1–3999)','Celsius · Fahrenheit · Kelvin':'مئوية · فهرنهايت · كلفن','Unix ↔ human-readable date':'يونكس ↔ تاريخ مقروء','Text ↔ hex · binary · octal · decimal':'نص ↔ ست عشري · ثنائي · ثماني · عشري','Distance · area · mass · speed · data':'مسافة · مساحة · كتلة · سرعة · بيانات',
+'Chars, words, lines, reading time':'أحرف، كلمات، أسطر، زمن القراءة','Placeholder text generator':'مولّد نص بديل','Reverse characters, words, or lines':'عكس الأحرف أو الكلمات أو الأسطر','Sort, dedupe, shuffle, number lines':'ترتيب، إزالة تكرار، خلط، ترقيم','Plain or regex, with flags':'نص عادي أو تعبير نمطي، مع أعلام','Line-by-line differences':'الفروق سطراً بسطر',
+'Convert between CSV and JSON':'التحويل بين CSV وJSON','Random integers in a range':'أعداد صحيحة عشوائية ضمن نطاق','Union · intersection · difference of lists':'اتحاد · تقاطع · فرق القوائم',
+'Percent-encoding for URLs':'ترميز النسبة المئوية للروابط','Break a URL into its parts':'تفكيك الرابط إلى أجزائه','Escape / unescape HTML':'ترميز/فك HTML','Decode header & payload (no verify)':'فك الترويسة والحمولة (بدون تحقق)','Make URL-friendly slugs':'إنشاء روابط ودّية','Build an Authorization header':'إنشاء ترويسة Authorization','Prettify · minify · validate':'تجميل · تصغير · تحقق','Neutralise or restore URLs & IPs':'تحييد أو استعادة الروابط وعناوين IP','Pull IPs, emails, URLs, hashes from text':'استخراج عناوين IP والبريد والروابط والتجزئات',
+'CIDR → network, mask, host range':'CIDR ← الشبكة والقناع ونطاق المضيفين',
+'Evaluate expressions safely':'تقييم التعابير بأمان','Three common percent calculations':'ثلاث حسابات شائعة للنسبة','Solve V · I · R · P from any two':'أوجد V · I · R · P من أي قيمتين','Check N or list primes':'تحقق من N أو اسرد الأولية','Sum, mean, median, min/max, σ':'مجموع، متوسط، وسيط، أدنى/أقصى، σ','AND · OR · XOR · NOT · shifts':'AND · OR · XOR · NOT · إزاحات',
+'Generate a scannable QR code':'إنشاء رمز QR قابل للمسح','Resize · convert · grayscale · invert':'تغيير حجم · تحويل · تدرّج رمادي · عكس',
+/* buttons */
+'Encode':'ترميز','Decode':'فك','Generate':'توليد','Regenerate':'إعادة التوليد','Solve':'حل','Clear':'مسح','Convert':'تحويل','Escape':'ترميز','Unescape':'فك الترميز','Prettify':'تجميل','Minify':'تصغير','Validate':'تحقق','Download':'تنزيل','Download PNG':'تنزيل PNG','Text → Codes':'نص ← رموز','Codes → Text':'رموز ← نص','Text → Morse':'نص ← مورس','Morse → Text':'مورس ← نص','Encode →':'ترميز ←','← Decode':'→ فك','Sort A→Z':'ترتيب أ←ي','Sort Z→A':'ترتيب ي←أ','Unique':'إزالة التكرار','Reverse':'عكس','Shuffle':'خلط','Remove blanks':'حذف الفراغات','Number':'ترقيم','Trim':'تشذيب','Union':'اتحاد','Intersection':'تقاطع','Symmetric':'متماثل','Defang':'تحييد','Fang':'استعادة',
+/* field labels */
+'Length':'الطول','Input':'المدخل','How many':'العدد','Message':'الرسالة','Key':'المفتاح','Algorithm':'الخوارزمية','Value':'القيمة','From base':'من الأساس','Base':'الأساس','Category':'الفئة','From':'من','To':'إلى','Roman':'روماني','Date & time':'التاريخ والوقت','URL':'الرابط','Token':'الرمز','Username':'اسم المستخدم','Password':'كلمة المرور','Keyword':'الكلمة المفتاحية','Set A':'المجموعة أ','Set B':'المجموعة ب','Find':'بحث','Replace':'استبدال','Replace with':'استبدال بـ','Original':'الأصل','Changed':'المعدّل','Mode':'الوضع','Shift':'الإزاحة','Key type':'نوع المفتاح','Content':'المحتوى','Image':'الصورة','Max width':'أقصى عرض','Format':'الصيغة','Min':'الأدنى','Max':'الأقصى','Count':'العدد','Reverse by':'عكس حسب','Extract':'استخراج','Indent':'الإزاحة','Input base':'أساس الإدخال',
+/* select options + checkboxes */
+'Hex':'ست عشري','Binary':'ثنائي','Octal':'ثماني','Decimal':'عشري','Characters':'أحرف','Words':'كلمات','Lines':'أسطر','Distance':'مسافة','Area':'مساحة','Mass':'كتلة','Speed':'سرعة','Regex':'تعبير نمطي','Ignore case':'تجاهل الحالة','Unique only':'فريدة فقط','Grayscale':'تدرّج رمادي','Invert':'عكس',
+/* hints */
+'Supports + - * / % ^, sqrt, sin, cos, log, pi, e…':'يدعم + - * / % ^، sqrt، sin، cos، log، pi، e…','XOR is symmetric — output is hex of the XORed bytes.':'XOR متماثل — الناتج ست عشري للبايتات المُشفَّرة.','MD4/5, CRC32, RIPEMD-160 & Whirlpool load once from CDN.':'تُحمَّل MD4/5 وCRC32 وRIPEMD-160 وWhirlpool مرة واحدة من CDN.','Choose an image — nothing is uploaded, all local.':'اختر صورة — لا يُرفع أي شيء، المعالجة محلية بالكامل.','Enter any two values, then Solve.':'أدخل أي قيمتين ثم اضغط حل.'
+};
+const T=s=>(LANG==='ar'&&s!=null&&AR[s]!==undefined)?AR[s]:s;
+const inp=(ph,type='text')=>h('input',{class:'in',type,placeholder:ph?T(ph):''});
+const ta =(ph,rows=4)=>h('textarea',{class:'in',rows,placeholder:ph?T(ph):''});
+const sel=(opts,val)=>{const s=h('select',{class:'in'});opts.forEach(([v,n])=>s.append(h('option',{value:v},T(n))));if(val!=null)s.value=val;return s;};
+const btn=(label,cls='btn',on)=>h('button',{class:cls,onClick:on},T(label));
+const field=(label,node,hint)=>h('label',{class:'fld'},h('span',{class:'lbl'},T(label)),node,hint?h('span',{class:'hint'},T(hint)):null);
 function copyBtn(get){
-  const b=h('button',{class:'copy',onClick:async()=>{try{await navigator.clipboard.writeText(get());b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy',1200);}catch(e){}}},'Copy');
+  const b=h('button',{class:'copy',onClick:async()=>{try{await navigator.clipboard.writeText(get());b.textContent=T('Copied ✓');setTimeout(()=>b.textContent=T('Copy'),1200);}catch(e){}}},T('Copy'));
   return b;
 }
 function outBox(){
@@ -497,15 +533,15 @@ function showHome(){
     TOOLS.filter(t=>t.cat===cat).forEach(t=>{
       const card=h('a',{class:'card',href:'#'+t.id},
         h('div',{class:'card-ic',html:TOOL_ICON[t.id]||CAT_ICON[cat]||''}),
-        h('div',{},h('div',{class:'card-t'},t.name),h('div',{class:'card-d'},t.desc)));
+        h('div',{},h('div',{class:'card-t'},T(t.name)),h('div',{class:'card-d'},T(t.desc))));
       card._t=t;cards.append(card);
     });
-    grid.append(h('section',{class:'cat'},h('h2',{class:'cat-h'},cat),cards));
+    grid.append(h('section',{class:'cat'},h('h2',{class:'cat-h'},T(cat)),cards));
   });
   search.oninput=()=>{const q=search.value.toLowerCase();
     grid.querySelectorAll('section.cat').forEach(sec=>{let any=false;
       sec.querySelectorAll('.card').forEach(c=>{const t=c._t;
-        const hit=(t.name+' '+t.desc+' '+t.cat).toLowerCase().includes(q);c.style.display=hit?'':'none';if(hit)any=true;});
+        const hit=(t.name+' '+t.desc+' '+t.cat+' '+(AR[t.name]||'')+' '+(AR[t.desc]||'')+' '+(AR[t.cat]||'')).toLowerCase().includes(q);c.style.display=hit?'':'none';if(hit)any=true;});
       sec.style.display=any?'':'none';});};
   view.append(h('div',{class:'search-wrap'},search),grid);
 }
@@ -513,11 +549,12 @@ function showHome(){
 function showTool(t){
   view.innerHTML='';
   const body=h('div',{class:'tool-body'});
-  view.append(h('a',{class:'back',href:'#'},'← All tools'),
-    h('div',{class:'tool-head'},h('h1',{class:'tool-t'},t.name),h('p',{class:'tool-d'},t.desc)),body);
+  view.append(h('a',{class:'back',href:'#'},T('← All tools')),
+    h('div',{class:'tool-head'},h('h1',{class:'tool-t'},T(t.name)),h('p',{class:'tool-d'},T(t.desc))),body);
   t.render(body);window.scrollTo(0,0);
 }
 
 function route(){const id=location.hash.slice(1);const t=TOOLS.find(x=>x.id===id);t?showTool(t):showHome();}
 window.addEventListener('hashchange',route);
+window.addEventListener('langchange',()=>{LANG=document.documentElement.lang==='ar'?'ar':'en';route();});
 route();

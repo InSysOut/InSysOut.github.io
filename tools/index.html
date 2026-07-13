@@ -50,7 +50,7 @@
             <a href="/#about" data-en="About" data-ar="من نحن">About</a>
             <a href="/#publications" data-en="Research" data-ar="أبحاث">Research</a>
             <a href="/#contact" data-en="Contact" data-ar="تواصل">Contact</a>
-            <a href="/tools/" class="active" data-en="Tools" data-ar="أدوات">Tools</a>
+            <a href="/tools/" class="active tools" data-en="Tools" data-ar="أدوات">Tools</a>
           </nav>
           <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
             <span class="lang-en active">EN</span>
@@ -124,6 +124,7 @@
       enBtn.classList.toggle('active',!isAr); arBtn.classList.toggle('active',isAr);
       const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
       try{ localStorage.setItem('insysout-lang',lang); }catch(e){}
+      window.dispatchEvent(new Event('langchange'));
     }
     toggle.addEventListener('click',()=>setLanguage(html.lang==='ar'?'en':'ar'));
     let initial='en'; try{ const s=localStorage.getItem('insysout-lang'); if(s==='ar'||s==='en') initial=s; }catch(e){}
