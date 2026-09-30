@@ -8,245 +8,392 @@
 <!-- Primary SEO -->
 <title>InSysOut — Transforming Visions into Reality</title>
 <meta name="description" content="InSysOut is an engineering Lab building AI agents, web portals, system integrations, custom software, and tech stack strategy for businesses of all sizes." />
-<meta name="keywords" content="AI agents, web portals, system integration, software development, tech consultation, digital transformation, custom software, InSysOut" />
+<meta name="keywords" content="AI agents, agentic AI, web portals, system integration, software development, tech consultation, digital transformation, custom software, sovereign AI, Arabic-first software, UAE, InSysOut" />
 <meta name="author" content="InSysOut" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href="https://www.insysout.com/" />
 
-<!-- Open Graph / Facebook / LinkedIn -->
+<!-- Home Screen web app (PWA): opens full-screen, without the Safari/Chrome address bar.
+     The manifest (display: standalone, scope "/") already lives at /favicons/site.webmanifest.
+     iOS reads these settings when the site is added to the Home Screen: remove and re-add the icon after deploying. -->
+<link rel="manifest" href="/favicons/site.webmanifest" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="InSysOut" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="application-name" content="InSysOut" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-TileColor" content="#08101f" />
+<meta name="msapplication-TileImage" content="/favicons/mstile-150x150.png" />
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="InSysOut" />
 <meta property="og:url" content="https://www.insysout.com/" />
 <meta property="og:title" content="InSysOut — Transforming Visions into Reality" />
 <meta property="og:description" content="An engineering Lab for AI agents, web portals, integrations, custom software, and tech stack strategy." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ar_AE" />
 <meta property="og:image" content="https://www.insysout.com/logo.png" />
-<meta property="og:site_name" content="InSysOut" />
+<meta property="og:image:secure_url" content="https://www.insysout.com/logo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:alt" content="InSysOut logo" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
+<!-- Twitter / X (square logo → "summary" card, so it is not cropped) -->
+<meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@insysout" />
+<meta name="twitter:creator" content="@insysout" />
 <meta name="twitter:title" content="InSysOut — Transforming Visions into Reality" />
 <meta name="twitter:description" content="An engineering Lab for AI agents, web portals, integrations, custom software, and tech stack strategy." />
 <meta name="twitter:image" content="https://www.insysout.com/logo.png" />
+<meta name="twitter:image:alt" content="InSysOut logo" />
 
 <!-- Favicons -->
-<link rel="icon" href="https://www.insysout.com/logo.png" />
+<link rel="icon" type="image/png" href="https://www.insysout.com/logo.png" />
 <link rel="apple-touch-icon" href="https://www.insysout.com/logo.png" />
 
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "InSysOut",
-  "url": "https://www.insysout.com/",
-  "logo": "https://www.insysout.com/logo.png",
-  "email": "hello@insysout.com",
-  "description": "Engineering Lab specializing in AI agents, web portals, system integration, custom software development, and tech stack consultation.",
-  "sameAs": [
-    "https://x.com/insysout",
-    "https://instagram.com/insysout",
-    "https://facebook.com/insysout",
-    "https://youtube.com/insysout",
-    "https://linkedin.com/company/insysout",
-    "https://github.com/insysout"
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "OfferCatalog",
-  "name": "InSysOut Engagements & Pricing",
-  "url": "https://www.insysout.com/#pricing",
-  "provider": {
-    "@type": "Organization",
-    "name": "InSysOut",
-    "url": "https://www.insysout.com/"
-  },
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Intro call",
-        "description": "20-minute scoping call on WhatsApp or Telegram."
+      "@type": "Organization",
+      "@id": "https://www.insysout.com/#organization",
+      "name": "InSysOut",
+      "alternateName": [
+        "إن سيس آوت",
+        "InSysOut Labs"
+      ],
+      "url": "https://www.insysout.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.insysout.com/#logo",
+        "url": "https://www.insysout.com/logo.png",
+        "contentUrl": "https://www.insysout.com/logo.png",
+        "width": 512,
+        "height": 512,
+        "caption": "InSysOut"
       },
-      "priceSpecification": [
+      "image": {
+        "@id": "https://www.insysout.com/#logo"
+      },
+      "description": "Engineering Lab specializing in AI agents, web portals, system integration, custom software development, and tech stack consultation.",
+      "slogan": "Transforming visions into reality.",
+      "foundingDate": "2024",
+      "email": "hello@insysout.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AE"
+      },
+      "areaServed": [
         {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "price": 0,
-          "valueAddedTaxIncluded": false
+          "@type": "Country",
+          "name": "United Arab Emirates"
         },
         {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "price": 0,
-          "valueAddedTaxIncluded": false
+          "@type": "Place",
+          "name": "Gulf Cooperation Council (GCC)"
+        },
+        "Worldwide"
+      ],
+      "knowsAbout": [
+        "AI agents",
+        "Agentic AI systems",
+        "Web portals",
+        "System integration",
+        "Custom software development",
+        "Tech stack consultation",
+        "Sovereign AI deployment",
+        "Retrieval-augmented generation (RAG)",
+        "Arabic-first software",
+        "Penetration testing"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "telephone": "+971508980652",
+          "email": "hello@insysout.com",
+          "url": "https://wa.me/971508980652",
+          "availableLanguage": [
+            "English",
+            "Arabic"
+          ]
         }
+      ],
+      "sameAs": [
+        "https://x.com/insysout",
+        "https://instagram.com/insysout",
+        "https://facebook.com/insysout",
+        "https://youtube.com/insysout",
+        "https://linkedin.com/company/insysout",
+        "https://tiktok.com/@insysout",
+        "https://github.com/insysout"
+      ],
+      "hasOfferCatalog": {
+        "@id": "https://www.insysout.com/#pricing"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.insysout.com/#website",
+      "url": "https://www.insysout.com/",
+      "name": "InSysOut",
+      "alternateName": "إن سيس آوت",
+      "description": "Engineering Lab for AI agents, web portals, integrations, custom software and tech stack strategy.",
+      "publisher": {
+        "@id": "https://www.insysout.com/#organization"
+      },
+      "inLanguage": [
+        "en",
+        "ar"
       ]
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Architecture Diagnostic",
-        "description": "One workflow or system; bilingual findings brief and architecture map. Credited to any build."
+      "@type": "WebPage",
+      "@id": "https://www.insysout.com/#webpage",
+      "url": "https://www.insysout.com/",
+      "name": "InSysOut — Transforming Visions into Reality",
+      "description": "InSysOut is an engineering Lab building AI agents, web portals, system integrations, custom software, and tech stack strategy for businesses of all sizes.",
+      "isPartOf": {
+        "@id": "https://www.insysout.com/#website"
       },
-      "priceSpecification": [
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "price": 1850,
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "price": 500,
-          "valueAddedTaxIncluded": false
-        }
-      ]
+      "about": {
+        "@id": "https://www.insysout.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://www.insysout.com/#logo"
+      },
+      "inLanguage": "en"
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Agent or Integration Sprint",
-        "description": "2–4 weeks; one agent or integration in production with a written acceptance test."
-      },
-      "priceSpecification": [
+      "@type": "OfferCatalog",
+      "name": "InSysOut Engagements & Pricing",
+      "url": "https://www.insysout.com/#pricing",
+      "itemListElement": [
         {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "minPrice": 7350,
-          "valueAddedTaxIncluded": false
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Intro call",
+            "description": "20-minute scoping call on WhatsApp or Telegram."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "price": 0,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "price": 0,
+              "valueAddedTaxIncluded": false
+            }
+          ]
         },
         {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "minPrice": 2000,
-          "valueAddedTaxIncluded": false
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Architecture Diagnostic",
+            "description": "One workflow or system; bilingual findings brief and architecture map. Credited to any build."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "price": 1850,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "price": 500,
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Agent or Integration Sprint",
+            "description": "2–4 weeks; one agent or integration in production with a written acceptance test."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "minPrice": 7350,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "minPrice": 2000,
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Agentic Forensic & Pentest Analysis",
+            "description": "Agent-assisted attack-surface mapping, vulnerability testing, incident forensics and a bilingual remediation report."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "minPrice": 15000,
+              "maxPrice": 40000,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "minPrice": 4100,
+              "maxPrice": 10900,
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Agentic System Build",
+            "description": "Multi-agent system with integrations, dashboards, approval gates, documentation and handover."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "minPrice": 18000,
+              "maxPrice": 55000,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "minPrice": 5000,
+              "maxPrice": 15000,
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Sovereign AI Deployment",
+            "description": "Self-hosted or in-region LLM, RAG pipeline and Arabic-first knowledge base."
+          },
+          "priceSpecification": [
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "AED",
+              "minPrice": 36700,
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "PriceSpecification",
+              "priceCurrency": "USD",
+              "minPrice": 10000,
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Lab Care Retainer",
+            "description": "Monitoring, monthly evidence report and up to three hours of changes. No minimum term."
+          },
+          "priceSpecification": [
+            {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "AED",
+              "price": 3675,
+              "unitCode": "MON",
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "USD",
+              "price": 1000,
+              "unitCode": "MON",
+              "valueAddedTaxIncluded": false
+            }
+          ]
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Team Enablement",
+            "description": "Bilingual corporate training on agents and AI adoption."
+          },
+          "priceSpecification": [
+            {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "AED",
+              "price": 5500,
+              "unitCode": "DAY",
+              "valueAddedTaxIncluded": false
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "USD",
+              "price": 1500,
+              "unitCode": "DAY",
+              "valueAddedTaxIncluded": false
+            }
+          ]
         }
-      ]
+      ],
+      "@id": "https://www.insysout.com/#pricing"
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Agentic Forensic & Pentest Analysis",
-        "description": "Agent-assisted attack-surface mapping, vulnerability testing, incident forensics and a bilingual remediation report."
+      "@type": "Report",
+      "@id": "https://www.insysout.com/#agent-commerce-field-manual",
+      "name": "Agent Commerce Field Manual",
+      "description": "A practical guide to designing, deploying, and operating commerce-oriented AI agents in production.",
+      "genre": "Field Manual",
+      "datePublished": "2026",
+      "encodingFormat": "application/pdf",
+      "url": "https://raw.githubusercontent.com/InSysOut/ResearchLabs/main/InSysOut_Agent_Commerce_Field_Manual.pdf",
+      "author": {
+        "@id": "https://www.insysout.com/#organization"
       },
-      "priceSpecification": [
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "minPrice": 15000,
-          "maxPrice": 40000,
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "minPrice": 4100,
-          "maxPrice": 10900,
-          "valueAddedTaxIncluded": false
-        }
-      ]
+      "publisher": {
+        "@id": "https://www.insysout.com/#organization"
+      },
+      "inLanguage": "en"
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Agentic System Build",
-        "description": "Multi-agent system with integrations, dashboards, approval gates, documentation and handover."
+      "@type": "Report",
+      "@id": "https://www.insysout.com/#agenticgov-whitepaper",
+      "name": "AgenticGov Whitepaper",
+      "description": "A framework for applying agentic AI systems to government workflows, public services, and citizen-facing operations.",
+      "genre": "Whitepaper",
+      "datePublished": "2026",
+      "encodingFormat": "application/pdf",
+      "url": "https://raw.githubusercontent.com/InSysOut/ResearchLabs/main/AgenticGov_Whitepaper.pdf",
+      "author": {
+        "@id": "https://www.insysout.com/#organization"
       },
-      "priceSpecification": [
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "minPrice": 18000,
-          "maxPrice": 55000,
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "minPrice": 5000,
-          "maxPrice": 15000,
-          "valueAddedTaxIncluded": false
-        }
-      ]
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Sovereign AI Deployment",
-        "description": "Self-hosted or in-region LLM, RAG pipeline and Arabic-first knowledge base."
+      "publisher": {
+        "@id": "https://www.insysout.com/#organization"
       },
-      "priceSpecification": [
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "AED",
-          "minPrice": 36700,
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "PriceSpecification",
-          "priceCurrency": "USD",
-          "minPrice": 10000,
-          "valueAddedTaxIncluded": false
-        }
-      ]
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Lab Care Retainer",
-        "description": "Monitoring, monthly evidence report and up to three hours of changes. No minimum term."
-      },
-      "priceSpecification": [
-        {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "AED",
-          "price": 3675,
-          "unitCode": "MON",
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "price": 1000,
-          "unitCode": "MON",
-          "valueAddedTaxIncluded": false
-        }
-      ]
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Team Enablement",
-        "description": "Bilingual corporate training on agents and AI adoption."
-      },
-      "priceSpecification": [
-        {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "AED",
-          "price": 5500,
-          "unitCode": "DAY",
-          "valueAddedTaxIncluded": false
-        },
-        {
-          "@type": "UnitPriceSpecification",
-          "priceCurrency": "USD",
-          "price": 1500,
-          "unitCode": "DAY",
-          "valueAddedTaxIncluded": false
-        }
-      ]
+      "inLanguage": "en"
     }
   ]
 }
@@ -1176,7 +1323,7 @@
     <header class="header">
       <div class="header-top">
         <div class="brand">
-          <img src="https://www.insysout.com/logo.png" alt="InSysOut logo" class="logo" />
+          <img src="https://www.insysout.com/logo.png" alt="InSysOut logo" class="logo" width="64" height="64" fetchpriority="high" />
           <span class="wordmark">
             <span class="wm-en">InSys<span>Out</span></span>
             <span class="wm-ar" hidden>إن سيس آوت</span>
@@ -1678,7 +1825,7 @@
           <span class="label"><span class="dot"></span><span data-en="WhatsApp" data-ar="واتساب">WhatsApp</span></span>
           <span class="arrow">→</span>
         </a>
-        <a class="btn" href="https://t.me/insysout" aria-label="Chat on Telegram" data-en-label="Chat on Telegram" data-ar-label="تواصل عبر تلغرام">
+        <a class="btn" href="https://t.me/insysout" target="_blank" rel="noopener" aria-label="Chat on Telegram" data-en-label="Chat on Telegram" data-ar-label="تواصل عبر تلغرام">
           <span class="label"><span class="dot"></span><span data-en="Telegram" data-ar="تلغرام">Telegram</span></span>
           <span class="arrow">→</span>
         </a>
